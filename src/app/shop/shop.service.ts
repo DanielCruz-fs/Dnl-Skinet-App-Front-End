@@ -13,14 +13,17 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(brandId?: number, typeId?: number) {
-    const params = new HttpParams();
+  getProducts(brandId?: number, typeId?: number, sort?: string) {
+    let params = new HttpParams();
 
     if (brandId) 
-      params.append('brandId', brandId.toString());
+      params = params.append('brandId', brandId.toString());
     
     if (typeId)
-      params.append('typeId', typeId.toString());
+      params = params.append('typeId', typeId.toString());
+    
+    if (sort) 
+      params = params.append('sort', sort);
 
     // we use observe 'response' just for using rxjs
     /**
