@@ -6,13 +6,14 @@ import { TestErrorComponent } from './core/test-error/test-error.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'test-error', component: TestErrorComponent },
-  { path: 'server-error', component: ServerErrorComponent },
-  { path: 'not-found', component: NotFoundComponent },
+  { path: 'test-error', component: TestErrorComponent, data: { breadcrumb: 'Test Errors' } },
+  { path: 'server-error', component: ServerErrorComponent, data: { breadcrumb: 'Server Error' } },
+  { path: 'not-found', component: NotFoundComponent, data: { breadcrumb: 'Not Found' } },
   // * Lazy loading new notation
-  { path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule) },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule), data: { breadcrumb: 'Shop' } },
+  //* To use ngx-breadcrumb we need to use empty for home path component
+  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' }, pathMatch: 'full' },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ];
 
 @NgModule({
