@@ -1,5 +1,6 @@
 <div class="row shop mt-3">
   <section class="col-md-3 shop__sorting">
+    <ng-container *ngIf="types.length && brands.length">
     <h5 class="text-warning ml-3">Sort</h5>
 
     <select name="sort" id="sort" class="custom-select mb-3"
@@ -28,7 +29,9 @@
         {{ type.name }}
       </li>
     </ul>
+    </ng-container>
   </section>
+
   <section class="col-md-9 shop__showcase">
     <div class="d-flex justify-content-between align-items-center pb-2">
 
@@ -38,7 +41,7 @@
                          [pageNumber]="shopParams.pageNumber">
       </app-paging-header>
 
-        <div class="form-inline mt-2">
+        <div class="form-inline mt-2" *ngIf="products.length">
           <input type="text" class="form-control mr-2" #search
                  style="width: 300px;" placeholder="Search"
                  (keyup.enter)="onSearch()">
