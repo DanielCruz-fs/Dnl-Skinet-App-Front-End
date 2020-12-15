@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'not-found', component: NotFoundComponent, data: { breadcrumb: 'Not Found' } },
   // * Lazy loading new notation
   { path: 'shop', loadChildren: () => import('./shop/shop.module').then(mod => mod.ShopModule), data: { breadcrumb: 'Shop' } },
+  { path: 'basket', loadChildren: () => import('./basket/basket.module').then(mod => mod.BasketModule), data: { breadcrumb: 'Basket' } },
   //* To use ngx-breadcrumb we need to use empty for home path component
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' }, pathMatch: 'full' },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
